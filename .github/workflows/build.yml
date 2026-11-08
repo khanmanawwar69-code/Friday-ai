@@ -1,3 +1,4 @@
+
 name: Build FRIDAY APK
 
 on:
@@ -32,6 +33,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install buildozer cython==0.29.33
 
+      - name: Accept Android SDK Licenses
+        run: yes | sdkmanager --licenses || true
+
       - name: Build APK
         run: buildozer -v android debug
 
@@ -41,3 +45,5 @@ jobs:
           name: FRIDAY-APK
           path: bin/*.apk
           if-no-files-found: error
+
+
